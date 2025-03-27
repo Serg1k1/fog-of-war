@@ -1,0 +1,9 @@
+
+/.expo
+
+node_modules
+android
+ios
+credentials
+
+expo-env.d.ts
