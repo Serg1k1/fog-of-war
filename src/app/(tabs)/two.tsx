@@ -1,5 +1,5 @@
-import { SecondTabScreen } from '@/screens/tabs-screens/second-tab';
+import { FirstTabScreen } from '@/screens/tabs-screens/first-tab';
 
 export default function TabTwoScreen() {
-  return <SecondTabScreen />;
+  return <FirstTabScreen />;
 }

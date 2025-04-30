@@ -4,18 +4,18 @@ import applePrivacyManifest from './apple-privacy-manifest.json';
 export default ({ config }: ConfigContext): ExpoConfig => {
   return {
     ...config,
-    owner: 'kindrat',
-    name: process.env.APP_NAME ?? 'Boilerplate',
-    slug: 'Boilerplate-dev',
+    owner: 'k1ndrat',
+    name: process.env.APP_NAME ?? 'FOG_OF_WAR',
+    slug: 'Fog-of-war',
     version: '1.0.0',
     orientation: 'portrait',
-    icon: './assets/images/icon.png',
+    icon: './src/shared/assets/images/icon.png',
     scheme: 'myapp',
     userInterfaceStyle: 'automatic',
     platforms: ['ios', 'android'],
     newArchEnabled: true,
     splash: {
-      image: './assets/images/splash-icon.png',
+      image: './src/shared/assets/images/splash-icon.png',
       resizeMode: 'contain',
       backgroundColor: '#ffffff',
     },
@@ -50,12 +50,12 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     android: {
       //   googleServicesFile: 'google-services.json',
       adaptiveIcon: {
-        foregroundImage: './assets/images/adaptive-icon.png',
+        foregroundImage: './src/shared/assets/images/adaptive-icon.png',
         backgroundColor: '#ffffff',
       },
       permissions: ['CAMERA', 'READ_EXTERNAL_STORAGE', 'WRITE_EXTERNAL_STORAGE', 'NOTIFICATIONS'],
       blockedPermissions: ['android.permission.RECORD_AUDIO'],
-      package: process.env.ANDROID_PACKAGE ?? 'myapp',
+      package: process.env.ANDROID_PACKAGE ?? 'com.k1ndrat.fogofwar',
     },
     plugins: [
       'expo-router',
@@ -63,7 +63,20 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       [
         'expo-font',
         {
-          fonts: ['src/assets/fonts/Inter-VariableFont_slnt,wght.ttf', 'src/assets/fonts/SF-arabic.ttf'],
+          fonts: ['src/shared/assets/fonts/SpaceMono-Regular.ttf'],
+        },
+      ],
+      [
+        '@rnmapbox/maps',
+        {
+          RNMapboxMapsDownloadToken: process.env.MAPBOX_DOWNLOAD_TOKEN,
+          RNMapboxMapsVersion: '11.0.0',
+        },
+      ],
+      [
+        'expo-location',
+        {
+          locationWhenInUsePermission: 'Show current location on map.',
         },
       ],
     ],
@@ -78,9 +91,9 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       router: {
         origin: false,
       },
-      //   eas: {
-      //     projectId: '9fdb5fc4-a108-47f5-aaa6-65efb122f694',
-      //   },
+      eas: {
+        projectId: '439c7ab3-8186-44d5-a751-0088eece1ffd',
+      },
       //   IOS_BUNDLE_IDENTIFIER: process.env.IOS_BUNDLE_IDENTIFIER,
       //   ANDROID_PACKAGE: process.env.ANDROID_PACKAGE,
       //   CERTIFICATE_HASH: process.env.CERTIFICATE_HASH ?? '',
@@ -88,12 +101,14 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       //   WATCHER_MAIL: process.env.WATCHER_MAIL ?? '',
       //   IS_PROD: Boolean(process.env.IS_PROD) ?? true,
     },
-    // runtimeVersion: {
-    //   policy: 'appVersion', // https://docs.expo.dev/versions/latest/sdk/updates/#runtime-version
-    // },
-    // updates: {
-    //   url: `https://u.expo.dev/9fdb5fc4-a108-47f5-aaa6-65efb122f694`,
-    // },
+    runtimeVersion: {
+      policy: 'sdkVersion',
+    },
+    updates: {
+      url: 'https://u.expo.dev/439c7ab3-8186-44d5-a751-0088eece1ffd',
+      enabled: true,
+      fallbackToCacheTimeout: 0,
+    },
     // notification: {
     //   iosDisplayInForeground: true,
     // },

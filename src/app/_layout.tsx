@@ -6,6 +6,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 import { I18nProvider, ThemeProviderWrapper } from '@/shared/config/providers';
+import 'expo-dev-client';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -18,7 +19,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    SpaceMono: require('../../assets/fonts/SpaceMono-Regular.ttf'),
+    SpaceMono: require('../shared/assets/fonts/SpaceMono-Regular.ttf'),
     ...FontAwesome.font,
   });
 
@@ -42,14 +43,14 @@ export default function RootLayout() {
 function RootLayoutNav() {
   return (
     <Try catch={ErrorBoundary}>
-      <I18nProvider>
-        <ThemeProviderWrapper>
+      <ThemeProviderWrapper>
+        <I18nProvider>
           <Stack>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
           </Stack>
-        </ThemeProviderWrapper>
-      </I18nProvider>
+        </I18nProvider>
+      </ThemeProviderWrapper>
     </Try>
   );
 }

@@ -1,12 +1,20 @@
 import { EditScreenInfo } from '@/widgets/edit-screen-info';
-import { View, Text, StyleSheet } from 'react-native';
+import Mapbox, { MapView } from '@rnmapbox/maps';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { useEffect } from 'react';
+
+Mapbox.setAccessToken(process.env.EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN || '');
 
 export function FirstTabScreen() {
+  useEffect(() => {
+    console.log('FirstTabScreen mounted');
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+      {process.env.EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN && (
+        <MapView style={styles.map} styleURL={Mapbox.StyleURL.TrafficNight} />
+      )}
     </View>
   );
 }
@@ -14,16 +22,12 @@ export function FirstTabScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  map: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
   },
 });
