@@ -25,7 +25,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       privacyManifests: applePrivacyManifest,
       infoPlist: {
         LSApplicationQueriesSchemes: ['comgooglemaps', 'https'],
-        UIBackgroundModes: ['fetch', 'remote-notification', 'audio'],
+        UIBackgroundModes: ['fetch', 'remote-notification', 'audio', 'location'],
         NSCameraUsageDescription:
           'This app requires camera access to capture and upload photos. Your photos may be used to update your avatar or to upload images of a new drone for identification and incident reporting.',
         NSPhotoLibraryUsageDescription: 'This app needs access to your photo library to select and upload photos.',
@@ -34,6 +34,8 @@ export default ({ config }: ConfigContext): ExpoConfig => {
           'We need your precise location to show you nearby flying zones, direction to flying zones, to allow you make flights and to notify you if flight become prohibited in your zone.',
         NSLocationAlwaysAndWhenInUseUsageDescription:
           'We need your precise location to show you nearby flying zones, direction to flying zones, to allow you make flights and to notify you if flight become prohibited in your zone.',
+        NSLocationAlwaysUsageDescription:
+          'We need your precise location even when the app is in background to notify you if flight become prohibited in your zone.',
         CFBundleAllowMixedLocalizations: true,
         NSAppTransportSecurity: {
           NSExceptionDomains: {
@@ -76,7 +78,14 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       [
         'expo-location',
         {
-          locationWhenInUsePermission: 'Show current location on map.',
+          locationAlwaysAndWhenInUsePermission:
+            'We need your precise location to have a possibility to delete fog from map.',
+          locationAlwaysPermission:
+            'We need your precise location even when the app is in background to remove fog from map when you are walking.',
+          locationWhenInUsePermission: 'We need your precise location to remove fog from map',
+          isAndroidBackgroundLocationEnabled: true,
+          isIosBackgroundLocationEnabled: true,
+          isIosForegroundLocationEnabled: true,
         },
       ],
     ],

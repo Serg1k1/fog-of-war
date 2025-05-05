@@ -1,5 +1,5 @@
-import { SecondTabScreen } from '@/screens/tabs-screens/second-tab';
+import { MapScreen } from '@/screens/tabs-screens/map-tab';
 
-export default function TabOneScreen() {
-  return <SecondTabScreen />;
+export default function FogMapScreen() {
+  return <MapScreen />;
 }

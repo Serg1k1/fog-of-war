@@ -47,7 +47,6 @@ function RootLayoutNav() {
         <I18nProvider>
           <Stack>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
           </Stack>
         </I18nProvider>
       </ThemeProviderWrapper>
